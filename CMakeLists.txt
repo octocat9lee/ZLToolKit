@@ -114,6 +114,13 @@ message(STATUS "将链接依赖库:${LINK_LIB_LIST}")
 #Enable c++11
 set(CMAKE_CXX_STANDARD 11)
 
+# 设置编译选项
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    # 在Debug模式下启用符号信息调试
+    message(STATUS "Debug mode enabled")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -fPIC") # 添加-g选项
+endif()
+
 if(NOT WIN32)
     add_compile_options(-Wno-deprecated-declarations)
     add_compile_options(-Wno-predefined-identifier-outside-function)
