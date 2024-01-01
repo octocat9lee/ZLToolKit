@@ -5,12 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) test_ini",
+            "name": "(gdb) test",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/bin/test_ini",
+            "program": "${workspaceFolder}/build/bin/test_noticeCenter",
             "args": [],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}/build/bin/",
             "environment": [],
             "externalConsole": false,
