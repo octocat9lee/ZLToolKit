@@ -210,12 +210,14 @@ private:
     //select相关
     struct Poll_Record {
         using Ptr = std::shared_ptr<Poll_Record>;
+        int fd;
         int event;
         int attach;
         PollEventCB call_back;
     };
     unordered_map<int, Poll_Record::Ptr> _event_map;
 #endif //HAS_EPOLL
+    unordered_map<int, bool> _event_cache_expired_map;
 
     //定时器相关
     std::multimap<uint64_t, DelayTask::Ptr> _delay_task_map;
