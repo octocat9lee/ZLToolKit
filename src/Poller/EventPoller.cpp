@@ -79,7 +79,7 @@ void EventPoller::shutdown() {
 
     if (_loop_thread) {
         //防止作为子进程时崩溃
-        try { _loop_thread->join(); } catch (...) {}
+        try { _loop_thread->join(); } catch (...) { _loop_thread->detach(); }
         delete _loop_thread;
         _loop_thread = nullptr;
     }
@@ -95,7 +95,7 @@ EventPoller::~EventPoller() {
 #endif //defined(HAS_EPOLL)
     //退出前清理管道中的数据
     onPipeEvent();
-    InfoL << this;
+    InfoL << getThreadName();
 }
 
 int EventPoller::addEvent(int fd, int event, PollEventCB cb) {
